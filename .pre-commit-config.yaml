@@ -1,0 +1,31 @@
+repos:
+-   repo: https://github.com/psf/black
+    rev: 22.12.0
+    hooks:
+    -   id: black
+        exclude: file_examples
+
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.3.0
+    hooks:
+    -   id: check-yaml
+    -   id: end-of-file-fixer
+    -   id: trailing-whitespace
+        exclude: file_examples
+
+-   repo: https://github.com/pycqa/flake8
+    rev: 6.0.0
+    hooks:
+    -   id: flake8
+        exclude: file_examples|__init__.py
+
+-   repo: local
+    hooks:
+    -   id: pytest-check
+        name: pytest-check
+        stages: [commit]
+        types: [python]
+        entry: pytest
+        language: system
+        pass_filenames: false
+        always_run: true
