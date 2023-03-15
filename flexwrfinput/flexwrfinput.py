@@ -1214,7 +1214,7 @@ class Outgrid:
         heights = ((wrfinput.PH + wrfinput.PHB) / 9.81 - wrfinput.HGT).mean(
             ["Time", "south_north", "west_east"]
         )
-        heights = np.floor(np.sort(heights))
+        heights = np.sort(heights)
         heights = heights[1 : until + 1] if until is not None else heights[1:]
         self.levels = heights
         self.numzgrid = len(heights)
