@@ -27,7 +27,7 @@ authors = ["Your Name <you@example.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.10"
 donfig = "^0.7.0"
 pyyaml = "^6.0"
 xarray = "^2023.2.0"
