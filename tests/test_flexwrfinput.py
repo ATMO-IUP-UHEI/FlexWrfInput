@@ -26,6 +26,12 @@ def example_path():
 
 
 @pytest.fixture
+def coordinates_path():
+    coordinates_path = Path(__file__).parent / "file_examples" / "positions"
+    return coordinates_path
+
+
+@pytest.fixture
 def ageclasses(example_path):
     Nage = StaticSpecifierArgument(
         dummyline="    #                NAGECLASS        number of age classes\n"
@@ -118,9 +124,9 @@ def config_path():
     return config_path
 
 
-####################################
-##### Tests for FlexwrfArgument ####
-####################################
+#################################### # noqa
+##### Tests for FlexwrfArgument #### # noqa
+#################################### # noqa
 
 
 class Test_OutputPath:
@@ -230,6 +236,16 @@ class Test_Releases:
         releases.add_copy(release_index=1, releases=releases)
         assert releases.numpoint.value == 4
         assert releases.xpoint1[1] == releases.xpoint1[1]
+
+    def test_set_coordinates_from_file(
+        self, coordinates_path, example_path, flexwrfinput
+    ):
+        flexwrfinput.read(example_path)
+        releases: Releases = flexwrfinput.releases
+        releases.add_copy(release_index=0)
+        releases.set_coordinates_from_file(coordinates_path)
+        assert releases.xpoint1[0] == 11
+        assert releases.ypoint1[0] == 1
 
 
 class Test_FlexwrfInput:
@@ -385,9 +401,9 @@ class Test_FlexwrfInput:
         assert flexwrfinput.outgrid.numzgrid.value == 1
 
 
-############################################
-######## Test additional functions #########
-############################################
+############################################  # noqa
+######## Test additional functions #########  # noqa
+############################################  # noqa
 
 
 def test_read_input(example_path):

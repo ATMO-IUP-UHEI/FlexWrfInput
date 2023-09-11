@@ -2006,8 +2006,8 @@ class Releases:
         """Adds a copy of another release to the releases. Either
 
         Args:
-            release_index (int): _description_
-            releases (Optional[Releases], optional): _description_. Defaults to None.
+            release_index (int): Index of release to copy.
+            releases (Optional[Releases], optional): Releases instance to choose from. Defaults to None.
         """
         releases = self if releases is None else releases
         new_release_arguments = [
@@ -2044,6 +2044,27 @@ class Releases:
             old_release_argument.append(
                 deepcopy(new_release_argument.value[release_index])
             )
+
+    def set_coordinates_from_file(self, file_path: Union[str, Path]):
+        """Loads longitudes and latitudes from file. In format longitude, latitude with
+            respective header line. Removes all other release positions.
+        Expected:
+            longitude, latitude
+            10.0, 10.0
+            ...
+
+        Args:
+            file_path (Union[str, Path]): Path to file.
+        """
+        positions = pd.read_csv(file_path)
+        if len(positions) != len(self.start):
+            raise ValueError(
+                f"Number of positions ({len(positions)}) does not match number of releases ({len(self.start)})"
+            )
+        self.xpoint1 = positions.longitude.values
+        self.ypoint1 = positions.latitude.values
+        self.xpoint2 = positions.longitude.values
+        self.ypoint2 = positions.latitude.values
 
     @property
     def nspec(self):
