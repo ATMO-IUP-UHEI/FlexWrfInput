@@ -21,7 +21,7 @@ multi_line_output = 3
 
 [tool.poetry]
 name = "flexwrfinput"
-version = "0.1.0"
+version = "0.1.1"
 description = "Tool to read, manipulate, and write input files for FLEXPART-WRF"
 authors = ["Your Name <you@example.com>"]
 readme = "README.md"

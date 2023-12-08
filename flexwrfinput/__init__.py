@@ -1,3 +1,4 @@
+# flake8: noqa
 from pathlib import Path
 
 from donfig import Config
@@ -7,4 +8,5 @@ default_config = Config(
 )
 
 
+from .__version__ import __version__
 from .flexwrfinput import FlexwrfInput, read_input
